@@ -2,7 +2,9 @@ import image from "../assets/stock-login-bg.png";
 import { IoMdPerson } from "react-icons/io";
 import { ErrorMessage, Formik } from "formik";
 import { object, string } from "yup";
+import useAuthCalls from "../service/useAuthCalls";
 const Login = () => {
+  const { login } = useAuthCalls();
   const loginSchema = object({
     email: string()
       .email("Please enter a valid email adress")
@@ -36,19 +38,21 @@ const Login = () => {
           </div>
           <div className="p-10 h-[50vh]">
             <Formik
-              validationSchema={loginSchema}
               initialValues={{ email: "", password: "" }}
+              validationSchema={loginSchema}
               onSubmit={(values, actions) => {
+                login(values);
                 actions.resetForm();
+                console.log(values)
               }}
             >
-              {({ values, handleChange, handleBlur, errors, touched }) => (
-                <form className="">
+              {({ values, handleChange, handleBlur, errors, touched,handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
                   <div className="relative z-0 w-full mb-5 group">
                     <input
                       type="email"
                       name="email"
-                      id="floating_email"
+                      id="email"
                       className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white   focus:outline-none focus:ring-0 peer"
                       placeholder=" "
                       required
@@ -57,7 +61,7 @@ const Login = () => {
                       onBlur={handleBlur}
                     />
                     <label
-                      for="email"
+                      htmlFor="email"
                       className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[#537D3C] peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Email address
@@ -74,7 +78,7 @@ const Login = () => {
                     <input
                       type="password"
                       name="password"
-                      id="floating_password"
+                      id="password"
                       className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-[#537D3C]-600 peer"
                       placeholder=" "
                       required
@@ -83,7 +87,7 @@ const Login = () => {
                       onBlur={handleBlur}
                     />
                     <label
-                      for="password"
+                      htmlFor="password"
                       className="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#537D3C] peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Password
