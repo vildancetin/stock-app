@@ -16,7 +16,7 @@ const authSlice = createSlice({
     },
     loginSuccess:(state,{payload})=>{
         state.loading=false
-        state.user=payload.data.username
+        state.user=payload.user.username
         state.token=payload.token
     },
     fetchFail:(state)=>{
