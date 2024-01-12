@@ -2,12 +2,31 @@ import { ErrorMessage } from "formik";
 import { object, string } from "yup";
 
 export const registerSchema = object({
-  username: string(),
-  password: string(),
-  email: string(),
-  firstName: string(),
-  lastName: string(),
+  username: string()
+    .max(20, "Username must be less than 20 characters.")
+    .required("Username is required."),
+  firstName: string()
+    .max(20, "First name must be less than 20 characters.")
+    .required("First name is required."),
+  lastName: string()
+    .max(20, "Last name must be less than 20 characters.")
+    .required("Last name is required."),
+  email: string()
+    .email("Please enter a valid email.")
+    .required("Email is required."),
+  password: string()
+    .required("Password is required.")
+    .min(8, "Password must contain at least 8 characters.")
+    .max(16, "Password must not exceed 16 characters.")
+    .matches(/\d+/, "Password must contain at least one digit.")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter.")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter.")
+    .matches(
+      /[@$!%*?&]+/,
+      "Password must contain at least one special character (@$!%*?&)."
+    ),
 });
+
 const RegisterComp = ({
   values,
   handleChange,
@@ -27,7 +46,7 @@ const RegisterComp = ({
             className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white   focus:outline-none focus:ring-0 peer"
             placeholder=" "
             required
-            handleBlur={handleBlur}
+            onBlur={handleBlur}
             onChange={handleChange}
             value={values.username}
           />
@@ -53,7 +72,7 @@ const RegisterComp = ({
             className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white   focus:outline-none focus:ring-0 peer"
             placeholder=" "
             required
-            handleBlur={handleBlur}
+            onBlur={handleBlur}
             onChange={handleChange}
             value={values.firstName}
           />
@@ -79,7 +98,7 @@ const RegisterComp = ({
             className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white   focus:outline-none focus:ring-0 peer"
             placeholder=" "
             required
-            handleBlur={handleBlur}
+            onBlur={handleBlur}
             onChange={handleChange}
             value={values.lastName}
           />
@@ -105,7 +124,7 @@ const RegisterComp = ({
             className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white   focus:outline-none focus:ring-0 peer"
             placeholder=" "
             required
-            handleBlur={handleBlur}
+            onBlur={handleBlur}
             onChange={handleChange}
             value={values.email}
           />
@@ -131,7 +150,7 @@ const RegisterComp = ({
             className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-[#537D3C]-600 peer"
             placeholder=" "
             required
-            handleBlur={handleBlur}
+            onBlur={handleBlur}
             onChange={handleChange}
             value={values.password}
           />
