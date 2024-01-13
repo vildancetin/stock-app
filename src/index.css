@@ -14,3 +14,9 @@ ul li:hover {
     padding: .5rem;
     cursor: pointer;
 }
+.nav-link{
+    gap: 1.25rem;
+    font-size: 1.3rem;
+   justify-content: center;
+   margin-left: 2rem;
+}
