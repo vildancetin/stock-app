@@ -8,7 +8,9 @@ import { FaShoppingBag } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import logo from "../assets/stock-app-logo.png";
 import { NavLink, Outlet } from "react-router-dom";
+import useAuthCalls from "../service/useAuthCalls";
 const Dashboard = () => {
+  const {logout}=useAuthCalls()
   return (
     <div className="flex">
       <aside className="w-[250px] bg-[#537D3C] h-screen text-white ">
@@ -66,7 +68,7 @@ const Dashboard = () => {
           </li>
           <div className="mt-20">
             <li>
-              <button className="flex justify-center items-center ">
+              <button className="flex justify-center items-center " onClick={logout}>
                 <IoLogOut />
                 Logout
               </button>

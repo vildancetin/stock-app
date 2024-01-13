@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchFail, fetchStart, loginSuccess, registerSuccess } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const useAuthCalls = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {token} =useSelector(state=>state.auth)
   const login = async (userInfo) => {
     dispatch(fetchStart());
     try {
@@ -37,7 +38,20 @@ const useAuthCalls = () => {
     }
   };
 
-  return { login ,register};
+  const logout= async ()=>{
+    dispatch(fetchStart())
+    try {
+      await axios(`${process.env.REACT_APP_BASE_URL}/auth/logout`,{
+        headers:{
+          Authorization:`Token ${token}`
+        }
+      })
+      navigate("/")
+    } catch (error) {
+      dispatch(fetchFail())
+    }
+  }
+  return { login ,register,logout};
 };
 
 export default useAuthCalls;
