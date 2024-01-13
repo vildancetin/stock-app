@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+ul li button{
+    gap: 1.25rem;
+    font-size: 1.3rem;
+   justify-content: center;
+   margin-left: 2rem;
+}
+ul li:hover {
+    background-color: #FEBB22;
+    border-radius: 5px;
+    padding: .5rem;
+    cursor: pointer;
+}
