@@ -17,3 +17,9 @@ ul li:hover {
     padding: .5rem;
     cursor: pointer;
 }
+.active {
+    @apply text-[#febb22]
+}
+.active:hover{
+    color: white;
+}
