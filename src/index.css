@@ -8,15 +8,12 @@ ul li button{
    justify-content: center;
    margin-left: 2rem;
 }
+ul li{
+    transition: all .5s ease-in-out;
+}
 ul li:hover {
     background-color: #FEBB22;
     border-radius: 5px;
     padding: .5rem;
     cursor: pointer;
-}
-.nav-link{
-    gap: 1.25rem;
-    font-size: 1.3rem;
-   justify-content: center;
-   margin-left: 2rem;
 }
