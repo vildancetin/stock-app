@@ -13,7 +13,7 @@ const Dashboard = () => {
   const { logout } = useAuthCalls();
   return (
     <div className="flex">
-      <aside className="w-[250px] bg-[#537D3C] h-screen text-white ">
+      <aside className="w-[250px] bg-[#537D3C] h-full text-white fixed">
         <div>
           <img src={logo} alt="" className="h-[200px] ml-6" />
         </div>
@@ -79,7 +79,9 @@ const Dashboard = () => {
           </div>
         </ul>
       </aside>
-      <Outlet />
+      <div className="ml-[250px] flex-grow overflow-y-auto p-8">
+        <Outlet />
+      </div>
     </div>
   );
 };
