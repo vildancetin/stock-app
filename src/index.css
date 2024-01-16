@@ -29,9 +29,7 @@ ul li:hover {
 .bg-green{
     background-color: #537D3C;
 }
-.bg-yellow{
-background-color: #FEBB22;
-}
+
 .info::-webkit-scrollbar{
 display: none;
 }
