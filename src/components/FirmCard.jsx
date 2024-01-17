@@ -1,8 +1,14 @@
 import React from "react";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
-const FirmCard = ({firm}) => {
-    const {name,phone,address,image}=firm
+import useStockCalls from "../service/useStockCalls";
+
+const FirmCard = ({ firm }) => {
+  const { name, phone, address, image, _id } = firm;
+  const { deleteStock } = useStockCalls();
+  const handleDelete = () => {
+    deleteStock("firms", _id);
+  };
   return (
     <>
       <div className=" block rounded-lg p-4 shadow-sm shadow-indigo-100">
@@ -19,7 +25,7 @@ const FirmCard = ({firm}) => {
         <div className="mt-2 text-center">
           <p>{phone}</p>
           <div className="mt-6 flex justify-center items-center gap-4 text-xl h-10">
-            <button className="flex-shrink-0">
+            <button className="flex-shrink-0" onClick={handleDelete}>
               <MdOutlineDeleteOutline />
             </button>
             <button className="flex-shrink-0">
