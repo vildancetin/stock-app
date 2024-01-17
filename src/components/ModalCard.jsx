@@ -3,6 +3,7 @@
 import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 
 import { useState } from "react";
+import useStockCalls from "../service/useStockCalls";
 
 const ModalCard = ({ openModal, handleClose }) => {
   const [info, setInfo] = useState({
@@ -11,6 +12,12 @@ const ModalCard = ({ openModal, handleClose }) => {
     phone: "",
     image: "",
   });
+  const {postFirm}=useStockCalls()
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    postFirm(info)
+    handleClose()
+  }
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
@@ -68,7 +75,7 @@ const ModalCard = ({ openModal, handleClose }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={handleClose}
+            onClick={handleSubmit}
             type="submit"
             className="bg-green hover:bg-[#FEBB22]"
           >
