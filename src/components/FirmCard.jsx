@@ -3,7 +3,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import useStockCalls from "../service/useStockCalls";
 
-const FirmCard = ({ firm }) => {
+const FirmCard = ({ firm, handleOpen, handleClose, setInfo }) => {
   const { name, phone, address, image, _id } = firm;
   const { deleteStock } = useStockCalls();
   const handleDelete = () => {
@@ -28,7 +28,13 @@ const FirmCard = ({ firm }) => {
             <button className="flex-shrink-0" onClick={handleDelete}>
               <MdOutlineDeleteOutline />
             </button>
-            <button className="flex-shrink-0">
+            <button
+              className="flex-shrink-0"
+              onClick={() => {
+                handleOpen();
+                setInfo(firm);
+              }}
+            >
               <MdEdit />
             </button>
           </div>

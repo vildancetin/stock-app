@@ -5,19 +5,17 @@ import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 
-const ModalCard = ({ openModal, handleClose }) => {
-  const [info, setInfo] = useState({
-    name: "",
-    address: "",
-    phone: "",
-    image: "",
-  });
-  const {postStock}=useStockCalls()
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    postStock(info)
-    handleClose()
-  }
+const ModalCard = ({ openModal, handleClose, info, setInfo }) => {
+  const { postStock,updateStock } = useStockCalls();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (info._id) {
+      updateStock("firms",info);
+    } else {
+      postStock("firms",info);
+    }
+    handleClose();
+  };
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };

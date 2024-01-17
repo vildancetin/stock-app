@@ -3,7 +3,6 @@ import useAxios from "./useAxios";
 import {
   fetchFail,
   fetchStart,
-  getFirmsSuccess,
   getStocksSuccess,
 } from "../features/stockSlice";
 const useStockCalls = () => {
@@ -26,18 +25,28 @@ const useStockCalls = () => {
   const postStock = async (url = "firms", info) => {
     try {
       await axiosWithToken.post(`${url}`, info);
+      getStocks(`${url}`);
     } catch (error) {
       console.log(error);
     }
-    getStocks(`${url}`);
+  };
+  const updateStock = async (url = "firms", info) => {
+    try {
+      await axiosWithToken.put(`${url}/${info._id}`,info);
+      getStocks(`${url}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const deleteStock = async (url = "firms", id) => {
     try {
       await axiosWithToken.delete(`${url}/${id}`);
       getStocks(`${url}`);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
-  return { getStocks, postStock, deleteStock };
+  return { getStocks, postStock, deleteStock, updateStock };
 };
 
 export default useStockCalls;
