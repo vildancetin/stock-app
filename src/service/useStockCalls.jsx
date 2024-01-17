@@ -1,15 +1,16 @@
 import { useDispatch } from "react-redux";
 import useAxios from "./useAxios";
-import { fetchFail, fetchStart, getFirmsSuccess } from "../features/stockSlice";
+import { fetchFail, fetchStart, getFirmsSuccess, getStocksSuccess } from "../features/stockSlice";
 const useStockCalls = () => {
   const { axiosWithToken } = useAxios();
   const dispatch = useDispatch();
 
-  const getFirms = async () => {
+  const getStocks = async (url="firms") => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken("/firms/");
-      dispatch(getFirmsSuccess(data.data));
+        const { data } = await axiosWithToken(`${url}`);
+        const newData=data.data
+      dispatch(getStocksSuccess({url,newData}));
       console.log(data.data);
     } catch (error) {
       dispatch(fetchFail());
@@ -17,15 +18,15 @@ const useStockCalls = () => {
     }
   };
 
-  const postFirm = async (info) => {
+  const postStock = async (url="firms",info) => {
     try {
-      await axiosWithToken.post("/firms/", info);
+      await axiosWithToken.post(`${url}`, info);
     } catch (error) {
       console.log(error);
     }
-    getFirms();
+    getStocks();
   };
-  return { getFirms ,postFirm};
+  return { getStocks ,postStock};
 };
 
 export default useStockCalls;

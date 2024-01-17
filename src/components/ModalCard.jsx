@@ -12,10 +12,10 @@ const ModalCard = ({ openModal, handleClose }) => {
     phone: "",
     image: "",
   });
-  const {postFirm}=useStockCalls()
+  const {postStock}=useStockCalls()
   const handleSubmit=(e)=>{
     e.preventDefault()
-    postFirm(info)
+    postStock(info)
     handleClose()
   }
   const handleChange = (e) => {

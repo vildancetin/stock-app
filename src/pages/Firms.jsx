@@ -9,9 +9,9 @@ const Firms = () => {
   const handleOpen=()=>{setOpenModal(true)}
   const handleClose=()=>{setOpenModal(false)}
   const {firms}=useSelector(state=>state.stock)
-  const { getFirms } = useStockCalls();
+  const { getStocks } = useStockCalls();
   useEffect(() => {
-    getFirms();
+    getStocks("firms");
   }, []);
   return (
     <div>
