@@ -6,13 +6,13 @@ import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 
 const ModalCard = ({ openModal, handleClose, info, setInfo }) => {
-  const { postStock,updateStock } = useStockCalls();
+  const { postStock, updateStock } = useStockCalls();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info._id) {
-      updateStock("firms",info);
+      updateStock("firms", info);
     } else {
-      postStock("firms",info);
+      postStock("firms", info);
     }
     handleClose();
   };
@@ -77,7 +77,7 @@ const ModalCard = ({ openModal, handleClose, info, setInfo }) => {
             type="submit"
             className="bg-green hover:bg-[#FEBB22]"
           >
-            Add Firm
+            {info._id ? "Update Firm" : "Add Firm"}
           </Button>
         </Modal.Footer>
       </Modal>
