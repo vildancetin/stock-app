@@ -11,7 +11,7 @@ const BrandCard = ({ brand, handleOpen, handleClose, setInfo }) => {
   };
   return (
     <>
-      <div className=" block rounded-lg p-4 shadow-sm shadow-indigo-100">
+      <div className=" block rounded-lg p-4 shadow-xl shadow-indigo-100">
         <div className="h-32 overflow-y-auto max-h-24 info">
           <p>{name}</p>
           

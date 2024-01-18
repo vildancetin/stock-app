@@ -4,6 +4,7 @@ import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 
 import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
+import { toastErrorNotify } from "../helper/ToastNotify";
 
 const BrandModal = ({ openModal, handleClose, info, setInfo }) => {
   const { postStock, updateStock } = useStockCalls();
