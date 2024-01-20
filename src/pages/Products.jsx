@@ -22,6 +22,8 @@ const Products = () => {
   const { getStocks } = useStockCalls();
   useEffect(() => {
     getStocks("products");
+    getStocks("categories")
+    getStocks("brands")
   }, []);
   return (
     <div>
