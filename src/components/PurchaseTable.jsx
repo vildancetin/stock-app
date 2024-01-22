@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import useStockCalls from "../service/useStockCalls";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
-const SalesTable = () => {
-  const { sales } = useSelector((state) => state.stock);
+const ProductTable = () => {
+  const { sales , purchases} = useSelector((state) => state.stock);
   const { deleteStock,updateStock } = useStockCalls();
   console.log(sales);
   return (
@@ -16,6 +16,7 @@ const SalesTable = () => {
           </Table.HeadCell>
 
           <Table.HeadCell>Date</Table.HeadCell>
+          <Table.HeadCell className="px-2">Firm</Table.HeadCell>
           <Table.HeadCell className="px-2">Brand</Table.HeadCell>
           <Table.HeadCell className="px-10">Product</Table.HeadCell>
           <Table.HeadCell className="px-10">Quantity</Table.HeadCell>
@@ -27,7 +28,7 @@ const SalesTable = () => {
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {sales.map((product) => (
+          {purchases.map((product) => (
             <Table.Row
               className="bg-white dark:border-gray-700 dark:bg-gray-800"
               key={product._id}
@@ -36,6 +37,7 @@ const SalesTable = () => {
                 <Checkbox />
               </Table.Cell>
               <TableCell>{product.createdAt}</TableCell>
+              <TableCell>{product.firmId.name}</TableCell>
               <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                 {product.brandId.name}
               </Table.Cell>
@@ -60,4 +62,4 @@ const SalesTable = () => {
   );
 };
 
-export default SalesTable;
+export default ProductTable;
