@@ -7,13 +7,13 @@ import { Label, Select } from "flowbite-react";
 import { useSelector } from "react-redux";
 
 const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
-  const { postStock } = useStockCalls();
-  const {products,brands } = useSelector((state) => state.stock);
-  
-  console.log(brands);
+  const { postStock,updateStock } = useStockCalls();
+  const { products, brands } = useSelector((state) => state.stock);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info._id) {
+      updateStock("sales",info)
     } else {
       postStock("sales", info);
     }
@@ -27,9 +27,9 @@ const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
     <>
       <Modal dismissible show={openModal} onClose={handleClose}>
         <Modal.Body>
-          <div className="max-w-md">
+          <div className="">
             <div className="mb-2 block">
-              <Label htmlFor="categories" value="Select category" />
+              <Label htmlFor="categories" value="Select product" />
             </div>
             <Select
               id="categories"
@@ -39,13 +39,17 @@ const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
               onChange={handleChange}
             >
               {products.map((category) => (
-                <option value={category._id} name="categoryId">
+                <option
+                  value={category._id}
+                  name="categoryId"
+                  key={category._id}
+                >
                   {category.name}
                 </option>
               ))}
             </Select>
           </div>
-          <div className="max-w-md">
+          <div className="">
             <div className="mb-2 block">
               <Label htmlFor="brands" value="Select brand" />
             </div>
@@ -57,22 +61,36 @@ const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
               value={info.brandId}
             >
               {brands.map((brand) => (
-                <option value={brand._id} name="brandId">
+                <option value={brand._id} name="brandId" key={brand._id}>
                   {brand.name}
                 </option>
               ))}
             </Select>
           </div>
-          <div className="max-w-md">
+          <div className="">
             <div className="mb-2 block">
-              <Label htmlFor="name" value="Product Name" />
+              <Label htmlFor="quantity" value="Quantity" />
             </div>
             <TextInput
-              id="name"
-              placeholder="Name *"
+              id="quantity"
+              placeholder="Quantity *"
               required
-              name="name"
-              type="text"
+              name="quantity"
+              type="number"
+              value={info.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="">
+            <div className="mb-2 block">
+              <Label htmlFor="price" value="Price" />
+            </div>
+            <TextInput
+              id="price"
+              placeholder="Price *"
+              required
+              name="price"
+              type="number"
               value={info.name}
               onChange={handleChange}
             />
@@ -84,7 +102,7 @@ const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
             type="submit"
             className="bg-green hover:bg-[#FEBB22]"
           >
-            Add Product
+            Add New Sale
           </Button>
         </Modal.Footer>
       </Modal>

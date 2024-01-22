@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useStockCalls from "../service/useStockCalls";
-import ProductTable from "../components/ProductTable";
+import SalesTable from "../components/SalesTable";
 import SalesModal from "../components/SalesModal";
 
 const Sales = () => {
@@ -14,17 +14,18 @@ const Sales = () => {
   };
 
   const [info, setInfo] = useState({
-    date:"",
-    name: "",
-    categoryId: "",
+    quantity:"",
+    price: "",
+    productId: "",
     brandId: "",
+    createdAt:""
   });
 
   const { getStocks } = useStockCalls();
   useEffect(() => {
-    // getStocks("products");
-    // getStocks("categories")
-    // getStocks("brands")
+    getStocks("products");
+    getStocks("categories")
+    getStocks("brands")
     getStocks("sales")
   }, []);
   return (
@@ -42,7 +43,7 @@ const Sales = () => {
         setInfo={setInfo}
       />
       <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
-        <ProductTable
+        <SalesTable
           handleOpen={handleOpen}
           handleClose={handleClose}
           setInfo={setInfo}
