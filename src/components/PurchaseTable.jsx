@@ -15,13 +15,13 @@ const ProductTable = () => {
             <Checkbox />
           </Table.HeadCell>
 
-          <Table.HeadCell>Date</Table.HeadCell>
-          <Table.HeadCell className="px-2">Firm</Table.HeadCell>
-          <Table.HeadCell className="px-2">Brand</Table.HeadCell>
+          <Table.HeadCell className="px-12">Date</Table.HeadCell>
+          <Table.HeadCell className="px-12">Firm</Table.HeadCell>
+          <Table.HeadCell className="px-6">Brand</Table.HeadCell>
           <Table.HeadCell className="px-10">Product</Table.HeadCell>
-          <Table.HeadCell className="px-10">Quantity</Table.HeadCell>
-          <Table.HeadCell className="px-10">Price</Table.HeadCell>
-          <Table.HeadCell className="px-10">Amount</Table.HeadCell>
+          <Table.HeadCell className="px-8">Quantity</Table.HeadCell>
+          <Table.HeadCell className="px-8">Price</Table.HeadCell>
+          <Table.HeadCell className="px-8">Amount</Table.HeadCell>
           <Table.HeadCell>
             Actions
             <span className="sr-only">Delete</span>
@@ -36,16 +36,16 @@ const ProductTable = () => {
               <Table.Cell className="p-4">
                 <Checkbox />
               </Table.Cell>
-              <TableCell>{product.createdAt}</TableCell>
-              <TableCell>{product.firmId.name}</TableCell>
+              <TableCell className="text-center">{product.createdAt.slice(0,10)}</TableCell>
+              <TableCell className="text-center">{product.firmId.name}</TableCell>
               <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                 {product.brandId.name}
               </Table.Cell>
-              <Table.Cell className="px-10" >{product.productId.name}</Table.Cell>
-              <Table.Cell className="px-10">{product.quantity}</Table.Cell>
-              <Table.Cell className="px-10">{product.price}</Table.Cell>
-              <Table.Cell className="px-10">{product.amount}</Table.Cell>
-              <Table.Cell>
+              <Table.Cell className="px-10 text-center" >{product.productId.name}</Table.Cell>
+              <Table.Cell className="px-10 text-center">{product.quantity}</Table.Cell>
+              <Table.Cell className="px-10 text-center">{product.price}</Table.Cell>
+              <Table.Cell className="px-10 text-center">{product.amount}</Table.Cell>
+              <Table.Cell className="text-center">
                 <button
                   href="#"
                   className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 "
