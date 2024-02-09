@@ -34,17 +34,17 @@ const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
             <Select
               id="categories"
               required
-              name="categoryId"
-              value={info.categoryId}
+              name="productId"
+              value={info.productId}
               onChange={handleChange}
             >
-              {products.map((category) => (
+              {products.map((product) => (
                 <option
-                  value={category._id}
-                  name="categoryId"
-                  key={category._id}
+                  value={product._id}
+                  name="productId"
+                  key={product._id}
                 >
-                  {category.name}
+                  {product.name}
                 </option>
               ))}
             </Select>
@@ -77,7 +77,7 @@ const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
               required
               name="quantity"
               type="number"
-              value={info.name}
+              value={info.quantity}
               onChange={handleChange}
             />
           </div>
@@ -91,7 +91,7 @@ const SalesModal = ({ openModal, handleClose, info, setInfo }) => {
               required
               name="price"
               type="number"
-              value={info.name}
+              value={info.price}
               onChange={handleChange}
             />
           </div>

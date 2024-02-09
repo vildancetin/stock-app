@@ -18,7 +18,7 @@ const Sales = () => {
     price: "",
     productId: "",
     brandId: "",
-    createdAt:""
+
   });
 
   const { getStocks } = useStockCalls();
