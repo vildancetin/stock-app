@@ -49,7 +49,7 @@ const ProductTable = () => {
                 <button
                   href="#"
                   className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 "
-                  onClick={() => deleteStock("sales", product._id)}
+                  onClick={() => deleteStock("purchases", product._id)}
                 >
                   <MdOutlineDeleteOutline className="text-xl" />
                 </button>

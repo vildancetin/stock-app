@@ -13,9 +13,9 @@ console.log(firms)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info._id) {
-      updateStock("sales",info)
+      updateStock("purchases",info)
     } else {
-      postStock("sales", info);
+      postStock("purchases", info);
     }
     handleClose();
   };
@@ -29,44 +29,44 @@ console.log(firms)
         <Modal.Body>
           <div className="">
             <div className="mb-2 block">
-              <Label htmlFor="categories" value="Select firm" />
+              <Label htmlFor="firms" value="Select firm" />
             </div>
             <Select
-              id="categories"
+              id="firms"
               required
-              name="categoryId"
-              value={info.categoryId}
+              name="firmId"
+              value={info.firmId}
               onChange={handleChange}
             >
-              {firms.map((category) => (
+              {firms.map((firm) => (
                 <option
-                  value={category._id}
-                  name="categoryId"
-                  key={category._id}
+                  value={firm._id}
+                  name="firmId"
+                  key={firm._id}
                 >
-                  {category.name}
+                  {firm.name}
                 </option>
               ))}
             </Select>
           </div>
           <div className="">
             <div className="mb-2 block">
-              <Label htmlFor="categories" value="Select product" />
+              <Label htmlFor="products" value="Select product" />
             </div>
             <Select
-              id="categories"
+              id="products"
               required
-              name="categoryId"
-              value={info.categoryId}
+              name="productId"
+              value={info.productId}
               onChange={handleChange}
             >
-              {products.map((category) => (
+              {products.map((product) => (
                 <option
-                  value={category._id}
-                  name="categoryId"
-                  key={category._id}
+                  value={product._id}
+                  name="productId"
+                  key={product._id}
                 >
-                  {category.name}
+                  {product.name}
                 </option>
               ))}
             </Select>
