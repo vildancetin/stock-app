@@ -34,7 +34,7 @@ const Kpi = () => {
   return (
     <div className="flex gap-2 flex-wrap justify-center items-center">
       {kpiDatas.map((item) => (
-        <div className="w-[250px] flex justify-center items-center max-h-28  rounded border-2">
+        <div className="w-[250px] flex justify-center items-center max-h-28  rounded border-2" key={item.id}>
           <div>{item.icon}</div>
           <div className="font-medium  ml-4">
             <p className="text-xl">{item.name}</p>
