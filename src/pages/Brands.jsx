@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import ModalCard from "../components/ModalCard";
 import BrandCard from "../components/BrandCard";
 import BrandModal from "../components/BrandModal";
+import { CardSkeleton, Error, NoDataMsg } from "../components/DataFetchMsg";
 
 const Brands = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -24,7 +25,7 @@ const Brands = () => {
     image: "",
   });
 
-  const { brands } = useSelector((state) => state.stock);
+  const { brands, loading, error } = useSelector((state) => state.stock);
   const { getStocks } = useStockCalls();
   useEffect(() => {
     getStocks("brands");
@@ -43,17 +44,26 @@ const Brands = () => {
         info={info}
         setInfo={setInfo}
       />
-      <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
-        {brands.map((brand) => (
-          <BrandCard
-            brand={brand}
-            key={brand._id}
-            handleOpen={handleOpen}
-            handleClose={handleClose}
-            setInfo={setInfo}
-          />
-        ))}
-      </div>
+      {error && <Error />}
+      {loading && (
+        <CardSkeleton>
+          <BrandCard />
+        </CardSkeleton>
+      )}
+      {!loading && !brands?.length && <NoDataMsg />}
+      {!loading && brands?.length > 0 && (
+        <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
+          {brands.map((brand) => (
+            <BrandCard
+              brand={brand}
+              key={brand._id}
+              handleOpen={handleOpen}
+              handleClose={handleClose}
+              setInfo={setInfo}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
