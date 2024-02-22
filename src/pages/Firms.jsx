@@ -3,6 +3,7 @@ import useStockCalls from "../service/useStockCalls";
 import FirmCard from "../components/FirmCard";
 import { useSelector } from "react-redux";
 import ModalCard from "../components/ModalCard";
+import { CardSkeleton, Error, NoDataMsg } from "../components/DataFetchMsg";
 
 const Firms = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -10,10 +11,7 @@ const Firms = () => {
     setOpenModal(true);
   };
   const handleClose = () => {
-    setInfo({    name: "",
-    address: "",
-    phone: "",
-    image: "",})
+    setInfo({ name: "", address: "", phone: "", image: "" });
     setOpenModal(false);
   };
 
@@ -24,7 +22,7 @@ const Firms = () => {
     image: "",
   });
 
-  const { firms } = useSelector((state) => state.stock);
+  const { firms,loading,error } = useSelector((state) => state.stock);
   const { getStocks } = useStockCalls();
   useEffect(() => {
     getStocks("firms");
@@ -43,11 +41,26 @@ const Firms = () => {
         info={info}
         setInfo={setInfo}
       />
-      <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
-        {firms.map((firm) => (
-          <FirmCard firm={firm} key={firm._id} handleOpen={handleOpen} handleClose={handleClose} setInfo={setInfo}/>
-        ))}
-      </div>
+      {error && <Error />}
+      {loading && (
+        <CardSkeleton>
+          <FirmCard />
+        </CardSkeleton>
+      )}
+      {!loading && !firms?.length && <NoDataMsg />}
+      {!loading && firms?.length > 0 && (
+        <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
+          {firms.map((firm) => (
+            <FirmCard
+              firm={firm}
+              key={firm._id}
+              handleOpen={handleOpen}
+              handleClose={handleClose}
+              setInfo={setInfo}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
