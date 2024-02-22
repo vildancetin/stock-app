@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 import PurchaseTable from "../components/PurchaseTable";
 import PurchaseModal from "../components/PurchaseModal";
+import TableSkleton, { Error, NoDataMsg } from "../components/DataFetchMsg";
+import { useSelector } from "react-redux";
 
-const Sales = () => {
+const Purchases = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { getStocks } = useStockCalls();
+  const { error, loading, purchases } = useSelector((state) => state.stock);
+
   const handleOpen = () => {
     setOpenModal(true);
   };
@@ -14,21 +19,19 @@ const Sales = () => {
   };
 
   const [info, setInfo] = useState({
-    quantity:"",
+    quantity: "",
     price: "",
     productId: "",
     brandId: "",
-    firmId:""
+    firmId: "",
   });
 
-  const { getStocks } = useStockCalls();
   useEffect(() => {
     getStocks("products");
-    getStocks("categories")
-    getStocks("brands")
-    getStocks("purchases")
-    getStocks("firms")
-
+    getStocks("categories");
+    getStocks("brands");
+    getStocks("purchases");
+    getStocks("firms");
   }, []);
   return (
     <div>
@@ -44,15 +47,20 @@ const Sales = () => {
         info={info}
         setInfo={setInfo}
       />
-      <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
-        <PurchaseTable
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          setInfo={setInfo}
-        />
-      </div>
+      {error && <Error />}
+      {loading && <TableSkleton />}
+      {!loading && !purchases?.length && !error && <NoDataMsg />}
+      {!loading && purchases?.length > 0 && !error && (
+        <div className="grid sm:grid-col-1 gap-4 mx-7 mt-4 justify-center min-w-[900px]">
+          <PurchaseTable
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            setInfo={setInfo}
+          />
+        </div>
+      )}
     </div>
   );
 };
 
-export default Sales;
+export default Purchases;

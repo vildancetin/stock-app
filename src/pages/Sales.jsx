@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 import SalesTable from "../components/SalesTable";
 import SalesModal from "../components/SalesModal";
+import { useSelector } from "react-redux";
+import TableSkleton, { Error, NoDataMsg } from "../components/DataFetchMsg";
 
 const Sales = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { error, loading, sales } = useSelector((state) => state.stock);
+
   const handleOpen = () => {
     setOpenModal(true);
   };
@@ -14,19 +18,18 @@ const Sales = () => {
   };
 
   const [info, setInfo] = useState({
-    quantity:"",
+    quantity: "",
     price: "",
     productId: "",
     brandId: "",
-
   });
 
   const { getStocks } = useStockCalls();
   useEffect(() => {
     getStocks("products");
-    getStocks("categories")
-    getStocks("brands")
-    getStocks("sales")
+    getStocks("categories");
+    getStocks("brands");
+    getStocks("sales");
   }, []);
   return (
     <div>
@@ -42,13 +45,18 @@ const Sales = () => {
         info={info}
         setInfo={setInfo}
       />
-      <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
-        <SalesTable
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          setInfo={setInfo}
-        />
-      </div>
+      {error && <Error />}
+      {loading && <TableSkleton />}
+      {!loading && !sales?.length && !error && <NoDataMsg />}
+      {!loading && sales?.length > 0 && !error && (
+        <div className="grid sm:grid-col-1 gap-4 mx-7 mt-4 justify-center min-w-[900px] ">
+          <SalesTable
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            setInfo={setInfo}
+          />
+        </div>
+      )}
     </div>
   );
 };

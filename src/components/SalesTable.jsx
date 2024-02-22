@@ -8,7 +8,7 @@ const SalesTable = () => {
   const { deleteStock,updateStock } = useStockCalls();
   console.log(sales);
   return (
-    <div className=" w-full">
+    <div className=" w-full min-w-[780px]">
       <Table hoverable>
         <Table.Head>
           <Table.HeadCell className="p-4">

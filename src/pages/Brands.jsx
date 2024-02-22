@@ -50,8 +50,8 @@ const Brands = () => {
           <BrandCard />
         </CardSkeleton>
       )}
-      {!loading && !brands?.length && <NoDataMsg />}
-      {!loading && brands?.length > 0 && (
+      {!loading && !brands?.length && !error && <NoDataMsg />}
+      {!loading && brands?.length > 0 && !error && (
         <div className="grid sm:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mx-7 mt-4 justify-center">
           {brands.map((brand) => (
             <BrandCard
