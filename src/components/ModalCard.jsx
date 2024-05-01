@@ -1,12 +1,12 @@
 "use client";
 
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
+import { Button ,Modal, TextInput } from "flowbite-react";
 
-import { useState } from "react";
 import useStockCalls from "../service/useStockCalls";
 
 const ModalCard = ({ openModal, handleClose, info, setInfo }) => {
   const { postStock, updateStock } = useStockCalls();
+  // ? if info includes _id value so it means this info came from api and so user want to update but if info doesnt have _id so will new firm information.
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info._id) {
@@ -16,6 +16,7 @@ const ModalCard = ({ openModal, handleClose, info, setInfo }) => {
     }
     handleClose();
   };
+  // ? when inputs start to fill
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
@@ -77,6 +78,7 @@ const ModalCard = ({ openModal, handleClose, info, setInfo }) => {
             type="submit"
             className="bg-green hover:bg-[#FEBB22]"
           >
+            {/* ? change button name to _id value */}
             {info._id ? "Update Firm" : "Add Firm"}
           </Button>
         </Modal.Footer>

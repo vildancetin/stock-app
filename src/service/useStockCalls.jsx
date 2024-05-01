@@ -9,7 +9,7 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const useStockCalls = () => {
   const { axiosWithToken } = useAxios();
   const dispatch = useDispatch();
-
+// ? get stocks by url but default value is "firms"
   const getStocks = async (url = "firms") => {
     dispatch(fetchStart());
     try {

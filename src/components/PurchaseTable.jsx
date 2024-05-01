@@ -37,11 +37,11 @@ const ProductTable = () => {
                 <Checkbox />
               </Table.Cell>
               <TableCell className="text-center">{product.createdAt.slice(0,10)}</TableCell>
-              <TableCell className="text-center">{product.firmId.name}</TableCell>
+              <TableCell className="text-center">{product.firmId?.name}</TableCell>
               <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                {product.brandId.name}
+                {product.brandId?.name}
               </Table.Cell>
-              <Table.Cell className="px-10 text-center" >{product.productId.name}</Table.Cell>
+              <Table.Cell className="px-10 text-center" >{product.productId?.name}</Table.Cell>
               <Table.Cell className="px-10 text-center">{product.quantity}</Table.Cell>
               <Table.Cell className="px-10 text-center">{product.price}</Table.Cell>
               <Table.Cell className="px-10 text-center">{product.amount}</Table.Cell>

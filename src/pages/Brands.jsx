@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import useStockCalls from "../service/useStockCalls";
-import FirmCard from "../components/FirmCard";
 import { useSelector } from "react-redux";
-import ModalCard from "../components/ModalCard";
 import BrandCard from "../components/BrandCard";
 import BrandModal from "../components/BrandModal";
 import { CardSkeleton, Error, NoDataMsg } from "../components/DataFetchMsg";
@@ -29,6 +27,7 @@ const Brands = () => {
   const { getStocks } = useStockCalls();
   useEffect(() => {
     getStocks("brands");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>

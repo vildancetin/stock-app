@@ -4,6 +4,7 @@ import { ErrorMessage, Formik } from "formik";
 import { object, string } from "yup";
 import useAuthCalls from "../service/useAuthCalls";
 const Login = () => {
+  // ? login funtction called and form validation schemas
   const { login } = useAuthCalls();
   const loginSchema = object({
     email: string()
@@ -46,6 +47,7 @@ const Login = () => {
                 console.log(values)
               }}
             >
+              {/* form inputs  */}
               {({ values, handleChange, handleBlur, errors, touched,handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
                   <div className="relative z-0 w-full mb-5 group">

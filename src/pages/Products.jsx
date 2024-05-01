@@ -4,6 +4,14 @@ import ProductTable from "../components/ProductTable";
 import ProductModal from "../components/ProductModal";
 
 const Products = () => {
+  const { getStocks } = useStockCalls();
+  // ? products include category and brand id so they called with products.
+  useEffect(() => {
+    getStocks("products");
+    getStocks("categories")
+    getStocks("brands")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => {
     setOpenModal(true);
@@ -19,12 +27,6 @@ const Products = () => {
     brandId: "",
   });
 
-  const { getStocks } = useStockCalls();
-  useEffect(() => {
-    getStocks("products");
-    getStocks("categories")
-    getStocks("brands")
-  }, []);
   return (
     <div>
       <button

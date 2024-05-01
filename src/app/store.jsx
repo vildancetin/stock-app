@@ -23,6 +23,7 @@ const store = configureStore({
     auth: persistedReducer,
     stock:stockReducer
   },
+  // ? Solution to the warning given due to wanting to save storage by serializing states
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

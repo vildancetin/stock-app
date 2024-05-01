@@ -6,6 +6,7 @@ import useStockCalls from "../service/useStockCalls";
 const FirmCard = ({ firm, handleOpen, setInfo }) => {
 
   const { deleteStock } = useStockCalls();
+  // ? _id is getting from api
   const handleDelete = () => {
     deleteStock("firms", firm?._id);
   };
@@ -29,6 +30,7 @@ const FirmCard = ({ firm, handleOpen, setInfo }) => {
               <MdOutlineDeleteOutline />
             </button>
             <button
+            // ? edit infos came from api so it includes _id information
               className="flex-shrink-0"
               onClick={() => {
                 handleOpen();

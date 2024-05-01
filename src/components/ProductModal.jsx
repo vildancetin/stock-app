@@ -49,6 +49,7 @@ const ProductModal = ({ openModal, handleClose, info, setInfo }) => {
             <div className="mb-2 block">
               <Label htmlFor="brands" value="Select brand" />
             </div>
+            {/* ? value is selected id */}
             <Select
               id="brands"
               required

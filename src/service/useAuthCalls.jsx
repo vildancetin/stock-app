@@ -5,6 +5,7 @@ import {
   fetchStart,
   loginSuccess,
   registerSuccess,
+  logoutSuccess,
 } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
@@ -30,7 +31,7 @@ const useAuthCalls = () => {
       toastErrorNotify("Login not successful");
     }
   };
-
+  // ? when i post to register the response send me a token in data and I save "token" to token info from authSlice with dispatvh.
   const register = async (userInfo) => {
     try {
       const { data } = await axios.post(
@@ -48,7 +49,7 @@ const useAuthCalls = () => {
       toastErrorNotify("Register not successful");
     }
   };
-
+  // ? for logout I have to send token info to server to delete it.
   const logout = async () => {
     dispatch(fetchStart());
     try {
@@ -57,7 +58,7 @@ const useAuthCalls = () => {
           Authorization: `Token ${token}`,
         },
       });
-
+      dispatch(logoutSuccess());
       navigate("/");
       toastSuccessNotify("Logout successful");
     } catch (error) {

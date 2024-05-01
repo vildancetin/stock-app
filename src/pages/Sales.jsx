@@ -30,6 +30,7 @@ const Sales = () => {
     getStocks("categories");
     getStocks("brands");
     getStocks("sales");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>

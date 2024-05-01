@@ -6,10 +6,18 @@ import ModalCard from "../components/ModalCard";
 import { CardSkeleton, Error, NoDataMsg } from "../components/DataFetchMsg";
 
 const Firms = () => {
+  // ? get firms from state
+    const { firms,loading,error } = useSelector((state) => state.stock);
+    const { getStocks } = useStockCalls();
+    useEffect(() => {
+      getStocks("firms");
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => {
     setOpenModal(true);
   };
+  // ? when modal closed all info datas will be reset
   const handleClose = () => {
     setInfo({ name: "", address: "", phone: "", image: "" });
     setOpenModal(false);
@@ -21,12 +29,6 @@ const Firms = () => {
     phone: "",
     image: "",
   });
-
-  const { firms,loading,error } = useSelector((state) => state.stock);
-  const { getStocks } = useStockCalls();
-  useEffect(() => {
-    getStocks("firms");
-  }, []);
   return (
     <div>
       <button

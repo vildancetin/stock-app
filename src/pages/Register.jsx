@@ -29,6 +29,7 @@ const Register = () => {
                 firstName: "",
                 lastName: "",
               }}
+              // ? register schema and register component created in different file adn imported here
               validationSchema={registerSchema}
               onSubmit={(values, actions) => {
                 register(values)
