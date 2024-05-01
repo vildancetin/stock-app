@@ -265,3 +265,5 @@ const kpiDatas = [
     },
   ];
 ```
+## Live
+[Link](https://stock-appy.vercel.app/)
