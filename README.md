@@ -1,7 +1,10 @@
 # STOCK APP
-- The application allows users to log in based on password and email validation and to log out of the system. Users can also manage inventory of products.
+## Outline
+![stock-app](https://github.com/vildancetin/stock-app/assets/75564722/40127062-87c4-40e2-8310-9aa4bf51d5f4)
 
-- New products and companies can be added, and sales or purchases can be made based on them.
+## Get Started
+ The application allows users to log in based on password and email validation and to log out of the system. Users can also manage inventory of products.
+ New products and companies can be added, and sales or purchases can be made based on them.
 ### Technologies Used
 - Formik
 - Yup
