@@ -1,5 +1,7 @@
 # STOCK APP
+- The application allows users to log in based on password and email validation and to log out of the system. Users can also manage inventory of products.
 
+- New products and companies can be added, and sales or purchases can be made based on them.
 ### Technologies Used
 - Formik
 - Yup
